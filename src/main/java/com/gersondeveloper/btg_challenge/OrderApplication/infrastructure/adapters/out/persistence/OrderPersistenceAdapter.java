@@ -3,6 +3,7 @@ package com.gersondeveloper.btg_challenge.OrderApplication.infrastructure.adapte
 import com.gersondeveloper.btg_challenge.OrderApplication.application.ports.out.LoadOrderPort;
 import com.gersondeveloper.btg_challenge.OrderApplication.application.ports.out.SaveOrderPort;
 import com.gersondeveloper.btg_challenge.OrderApplication.domain.entities.Order;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -12,6 +13,14 @@ import java.util.List;
 public class OrderPersistenceAdapter implements
         LoadOrderPort,
         SaveOrderPort {
+
+    private final OrderJpaRepository orderRepository;
+
+    @Autowired
+    public OrderPersistenceAdapter(OrderJpaRepository orderRepository) {
+        this.orderRepository = orderRepository;
+    }
+
     @Override
     public BigDecimal getCustomerTotalOrderValue(Long orderId) {
         return null;
