@@ -3,6 +3,8 @@ package com.gersondeveloper.btg_challenge.OrderApplication.infrastructure.adapte
 import com.gersondeveloper.btg_challenge.OrderApplication.application.ports.out.LoadOrderPort;
 import com.gersondeveloper.btg_challenge.OrderApplication.application.ports.out.SaveOrderPort;
 import com.gersondeveloper.btg_challenge.OrderApplication.domain.entities.Order;
+import com.gersondeveloper.btg_challenge.OrderApplication.infrastructure.adapters.out.persistence.entities.OrderJpaEntity;
+import com.gersondeveloper.btg_challenge.OrderApplication.infrastructure.adapters.out.persistence.mapper.OrderMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,6 +17,7 @@ public class OrderPersistenceAdapter implements
         SaveOrderPort {
 
     private final OrderJpaRepository orderRepository;
+    private OrderMapper orderMapper;
 
     @Autowired
     public OrderPersistenceAdapter(OrderJpaRepository orderRepository) {
@@ -37,7 +40,8 @@ public class OrderPersistenceAdapter implements
     }
 
     @Override
-    public void saveOrderMessage(String orderMessage) {
-
+    public void saveOrderMessage(Order order) {
+        OrderJpaEntity orderJpaEntity = orderMapper.toJpaEntity(order);
+        orderRepository.save(orderJpaEntity);
     }
 }
