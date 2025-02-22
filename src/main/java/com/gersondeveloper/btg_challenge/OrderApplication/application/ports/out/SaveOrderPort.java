@@ -1,4 +1,5 @@
 package com.gersondeveloper.btg_challenge.OrderApplication.application.ports.out;
 
-public class SaveOrderPort {
+public interface SaveOrderPort {
+    void saveOrderMessage(String orderMessage);
 }
