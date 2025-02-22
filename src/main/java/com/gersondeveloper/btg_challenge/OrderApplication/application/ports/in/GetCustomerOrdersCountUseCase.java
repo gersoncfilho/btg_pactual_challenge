@@ -1,4 +1,5 @@
 package com.gersondeveloper.btg_challenge.OrderApplication.application.ports.in;
 
-public class GetCustomerOrdersCountUseCase {
+public interface GetCustomerOrdersCountUseCase {
+    int getCustomerOrdersCount(String customerId);
 }

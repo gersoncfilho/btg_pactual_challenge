@@ -1,4 +1,7 @@
 package com.gersondeveloper.btg_challenge.OrderApplication.application.ports.in;
 
-public class GetCustomerTotalOrderValueUseCase {
+import java.math.BigDecimal;
+
+public interface GetCustomerTotalOrderValueUseCase {
+    BigDecimal getCustomerTotalOrderValue(Long orderId);
 }
